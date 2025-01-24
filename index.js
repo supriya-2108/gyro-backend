@@ -24,7 +24,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "./src/static")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join("./src/static", "./src/static", "jj.html"));
+  res.send('Welcome to Gyro API! <a href="/api-docs">API Docs</a>');
 });
 
 app.use("/user/v1", userRouter);
