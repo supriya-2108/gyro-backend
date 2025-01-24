@@ -15,8 +15,6 @@ import paymentRouter from "./src/routes/payment_operation.route.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // const { YAML } = pkg;
-const swaggerPath = path.resolve(__dirname, "./docs/swagger.yaml");
-const swaggerDocument = YAML.load(swaggerPath);
 const CSS_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 const app = express();
@@ -29,11 +27,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join("./src/static", "./src/static", "jj.html"));
 });
 
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, { customCssUrl: CSS_URL })
-);
 app.use("/user/v1", userRouter);
 app.use("/user/v1/operation", userOperationRouter);
 app.use("/admin/v1/operation", adminOperationRouter);
