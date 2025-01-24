@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    /* Reset some basic styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Background gradient */
+    body {
+      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    /* Container styles */
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    /* Error code styles */
+    .error-code {
+      font-size: 8rem;
+      font-weight: bold;
+      margin: 0;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    /* Error message styles */
+    .error-message {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    /* Button styles */
+    .home-button {
+      text-decoration: none;
+      color: white;
+      background-color: #ff4782;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #ff5c97;
+      transform: translateY(-3px);
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Oops! The page you're looking for doesn't exist.</p>
+    <a href="/" class="home-button">Go Home</a>
+  </div>
+  <script>
+    // Optional: You can add interactivity, such as redirecting after a delay
+    document.querySelector('.home-button').addEventListener('click', () => {
+      console.log('Navigating back to the homepage...');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Home Page</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1d1d42, #3a3a74);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Main container styles */
+    .container {
+      text-align: center;
+      padding: 20px;
+      max-width: 600px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+
+    /* Button styles */
+    .button {
+      text-decoration: none;
+      background: #ff4b5c;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .button:hover {
+      background: #ff6b81;
+      transform: translateY(-5px);
+    }
+
+    /* Circle animation */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 6s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .circle:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 30%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 70%;
+      animation-delay: 2s;
+    }
+
+    .circle:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      top: 80%;
+      left: 10%;
+      animation-delay: 4s;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Welcome to Your Server</h1>
+    <form id="paymentForm">
+      <input type="submit" value="Buy">
+    </form>
+    <p class="subtitle">Fast, Secure, and Reliable Hosting Solutions</p>
+    <a href="/dashboard" class="button">Dashboard</a>
+    <a href="/api-docs" class="button">Documentation</a>
+  </div>
+
+  <!-- Floating circles for background effect -->
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+  <script>
+    document.getElementById('paymentForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      try {
+        // Call your API to get the approval URL
+        const response = await fetch('http://localhost:3003/payment/v1/create-payment', {
+          method: 'GET', // Adjust method if your API uses POST
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (data.approvalUrl) {
+          // Redirect to the approval URL
+          window.location.href = data.approvalUrl;
+        } else {
+          alert('Error: Approval URL not found in API response.');
+        }
+      } catch (error) {
+        console.error('Error during API call:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
