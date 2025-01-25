@@ -26,7 +26,7 @@ app.listen(constants.port, async () => {
     await database;
     console.log("Database connection established successfully!");
   } catch (error) {
-    console.log(error.message, "not connected");
+    console.log(error.message,'not connected');
   }
   console.log(
     "Server is listening on port" +
